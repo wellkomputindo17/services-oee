@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             [
                 'no_do' => '08230001',
                 'name' => 'Testing DO 1',
-                'target'    => 9727
+                'target'    => 1832
             ],
             [
                 'no_do' => '08230002',
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             [
                 'no_do' => '08230003',
                 'name' => 'Testing DO 3',
-                'target'    => 8173
+                'target'    => 1392
             ],
         ]);
 
