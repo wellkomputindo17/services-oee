@@ -203,20 +203,39 @@ class StartServiceController extends Controller
                                 ]);
                             }
                         } else {
-                            DB::rollback();
+                            if ($rtm->status == 'Finish') {
+                                OeeService::where('mesin_id', $req->mesin_id)->where('no_do', 0)->delete();
 
-                            $event_arr[] = [
-                                'msg' => 'success',
-                                'code' => 'mesin_perbaikan',
-                                'desc' => "This {$rtm->mesin->name} is under maintenance.",
-                                'oee' => $data,
-                                'target' => 0,
-                                'nama_mesin' => $rtm->mesin->name,
-                                'operator' => $rtm->operator,
-                                'status' => $rtm->status,
-                                'mesin_id' => $req->mesin_id,
-                                'time' => date("Y-m-d H:i:s", strtotime($rtm->created_at))
-                            ];
+                                DB::commit();
+
+                                $event_arr[] = [
+                                    'msg' => 'success',
+                                    'code' => 'mesin_perbaikan',
+                                    'desc' => "This {$rtm->mesin->name} is under maintenance.",
+                                    'oee' => $data,
+                                    'target' => 0,
+                                    'nama_mesin' => $rtm->mesin->name,
+                                    'operator' => $rtm->operator,
+                                    'status' => $rtm->status,
+                                    'mesin_id' => $req->mesin_id,
+                                    'time' => date("Y-m-d H:i:s", strtotime($rtm->created_at))
+                                ];
+                            } else {
+                                DB::rollback();
+
+                                $event_arr[] = [
+                                    'msg' => 'success',
+                                    'code' => 'mesin_perbaikan',
+                                    'desc' => "This {$rtm->mesin->name} is under maintenance.",
+                                    'oee' => $data,
+                                    'target' => 0,
+                                    'nama_mesin' => $rtm->mesin->name,
+                                    'operator' => $rtm->operator,
+                                    'status' => $rtm->status,
+                                    'mesin_id' => $req->mesin_id,
+                                    'time' => date("Y-m-d H:i:s", strtotime($rtm->created_at))
+                                ];
+                            }
                         }
                     } catch (QueryException $th) {
                         DB::rollback();
