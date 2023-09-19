@@ -191,13 +191,15 @@ class StartServiceController extends Controller
                                 DB::rollback();
 
                                 $event_arr[] = [
-                                    'msg' => 'error',
+                                    'msg' => 'success',
+                                    'code' => 'error',
                                     'desc' => 'System error please contact the Support team',
                                     'mesin_id' => $req->mesin_id
                                 ];
 
                                 Log::info([
-                                    'msg' => 'error',
+                                    'msg' => 'success',
+                                    'code' => 'error',
                                     'desc' => 'System error please contact the Support team',
                                     'mesin_id' => $req->mesin_id
                                 ]);
