@@ -209,6 +209,12 @@ class StartServiceController extends Controller
                                 'msg' => 'success',
                                 'code' => 'mesin_perbaikan',
                                 'desc' => "This {$rtm->mesin->name} is under maintenance.",
+                                'oee' => $data,
+                                'target' => 0,
+                                'nama_mesin' => $rtm->mesin->name,
+                                'operator' => $rtm->operator,
+                                'status' => $rtm->status,
+                                'mesin_id' => $req->mesin_id,
                                 'time' => date("Y-m-d H:i:s", strtotime($rtm->created_at))
                             ];
                         }
