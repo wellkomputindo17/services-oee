@@ -27,7 +27,7 @@ class StartServiceController extends Controller
                 $event_arr = [];
                 foreach ($oee as $key => $req) {
                     try {
-                        $endpoint = env('ENDPOINT_URL');
+                        $endpoint = env('ENDPOINT_URL_NODERED');
                         // GET STATUS MESIN
                         $response = Http::get("{$endpoint}/mesin?mesinId={$req->mesin_id}&nomorDo={$req->no_do}");
                         $data = $response->object();
